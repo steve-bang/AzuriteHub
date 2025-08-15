@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AzuriteHub - The Open-source Multi-Cloud Backup Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--dark);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .wave-shape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-shape svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+
+        .wave-shape .shape-fill {
+            fill: #FFFFFF;
+        }
+
+        .backdrop-blur {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .animated-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover .animated-arrow {
+            transform: translateX(3px);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="backdrop-blur bg-white/80 fixed w-full z-10 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <img class="logo mr-3" src="/assets/images/logo.png" height="32" />
+                    <span class="text-xl font-bold text-gray-900">AzuriteHub</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-blue-600 font-medium">Pricing</a>
+                    <a href="https://github.com/steve-bang/AzuriteHub" target="_blank"
+                        class="text-gray-700 hover:text-blue-600 font-medium">GitHub</a>
+                </div>
+                <div class="flex items-center">
+                    <a href="#get-started"
+                        class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition duration-200">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white pt-32 pb-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="z-10">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">The Open-source Multi-Cloud Backup
+                        Platform</h1>
+                    <p class="text-xl text-blue-100 mb-8">Backup everything, store anywhere</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#get-started"
+                            class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition duration-200 flex items-center justify-center">
+                            Get Started <i class="fas fa-arrow-right ml-2 animated-arrow"></i>
+                        </a>
+                        <a href="https://github.com/steve-bang/AzuriteHub" target="_blank"
+                            class="px-6 py-3 bg-white/10 text-white font-semibold rounded-lg hover:bg-white/20 transition duration-200 flex items-center justify-center">
+                            <i class="fab fa-github mr-2"></i> Star on GitHub
+                        </a>
+                    </div>
+                </div>
+                <div class="relative z-10">
+                    <div class="bg-white/10 backdrop-blur rounded-2xl p-6 border border-white/20">
+                        <div class="flex space-x-2 mb-4">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="bg-gray-900 rounded-lg p-4 font-mono text-sm">
+                            <p class="text-green-400"># Install AzuriteHub</p>
+                            <p class="text-gray-300">docker pull azuritehub/core</p>
+                            <br>
+                            <p class="text-green-400"># Configure your backup</p>
+                            <p class="text-gray-300">azurite config create \</p>
+                            <p class="text-gray-300 ml-4">--database=postgres \</p>
+                            <p class="text-gray-300 ml-4">--storage=s3 \</p>
+                            <p class="text-gray-300 ml-4">--schedule="0 2 * * *"</p>
+                            <br>
+                            <p class="text-green-400"># Run the backup service</p>
+                            <p class="text-gray-300">azurite service start</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 title-font">Powerful Features</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">AzuriteHub provides a comprehensive solution for all
+                    your backup needs across multiple databases and cloud providers.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-gray-50 rounded-xl p-8 transition duration-300 hover:shadow-lg">
+                    <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-database text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Multi-database support</h3>
+                    <p class="text-gray-600 mb-4">Backup SQL Server, MySQL, PostgreSQL with extensible architecture for
+                        more database engines via plugins.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded">SQL Server</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded">MySQL</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded">PostgreSQL</span>
+                        <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">+ More</span>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card bg-gray-50 rounded-xl p-8 transition duration-300 hover:shadow-lg">
+                    <div class="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-cloud text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Multi-cloud storage</h3>
+                    <p class="text-gray-600 mb-4">Store backups in multiple cloud providers or locally with easy
+                        configuration and switching between providers.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded">AWS S3</span>
+                        <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded">Azure Blob</span>
+                        <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded">Google Drive</span>
+                        <span class="px-2 py-1 bg-green-50 text-green-600 text-xs rounded">Dropbox</span>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card bg-gray-50 rounded-xl p-8 transition duration-300 hover:shadow-lg">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-clock text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Smart Scheduling</h3>
+                    <p class="text-gray-600 mb-4">Cron-based scheduling powered by Quartz.NET for precise backup timing
+                        and automation.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded">Daily</span>
+                        <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded">Weekly</span>
+                        <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded">Custom</span>
+                        <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs rounded">On-demand</span>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card bg-gray-50 rounded-xl p-8 transition duration-300 hover:shadow-lg">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-yellow-100 text-yellow-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-file-archive text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Compression</h3>
+                    <p class="text-gray-600 mb-4">Automatic ZIP/GZIP compression to save storage space and reduce
+                        transfer times.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-yellow-50 text-yellow-600 text-xs rounded">ZIP</span>
+                        <span class="px-2 py-1 bg-yellow-50 text-yellow-600 text-xs rounded">GZIP</span>
+                        <span class="px-2 py-1 bg-yellow-50 text-yellow-600 text-xs rounded">Encrypted</span>
+                    </div>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card bg-gray-50 rounded-xl p-8 transition duration-300 hover:shadow-lg">
+                    <div class="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-bell text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Notifications</h3>
+                    <p class="text-gray-600 mb-4">Get alerts via Email, Slack, or Telegram when backups succeed or fail.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-red-50 text-red-600 text-xs rounded">Email</span>
+                        <span class="px-2 py-1 bg-red-50 text-red-600 text-xs rounded">Slack</span>
+                        <span class="px-2 py-1 bg-red-50 text-red-600 text-xs rounded">Telegram</span>
+                        <span class="px-2 py-1 bg-red-50 text-red-600 text-xs rounded">Webhook</span>
+                    </div>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card bg-gray-50 rounded-xl p-8 transition duration-300 hover:shadow-lg">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-history text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Backup History</h3>
+                    <p class="text-gray-600 mb-4">View and manage past backups with full history tracking and retention
+                        policies.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-indigo-50 text-indigo-600 text-xs rounded">Versioning</span>
+                        <span class="px-2 py-1 bg-indigo-50 text-indigo-600 text-xs rounded">Retention</span>
+                        <span class="px-2 py-1 bg-indigo-50 text-indigo-600 text-xs rounded">Audit Log</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">What is AzuriteHub?</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        AzuriteHub is an <span class="font-semibold text-blue-600">open-source backup tool</span>
+                        designed for databases, files, and cloud resources. It supports multi-cloud destinations and
+                        multiple database engines, with automatic scheduling, compression, and notifications.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <p class="ml-3 text-gray-700">Backup SQL Server, MySQL, PostgreSQL (more coming soon)</p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <p class="ml-3 text-gray-700">Store backups in Google Drive, AWS S3, Azure Blob, Dropbox</p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <p class="ml-3 text-gray-700">Automate backups with cron-style schedules</p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <p class="ml-3 text-gray-700">Compress backups to save space</p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <p class="ml-3 text-gray-700">Receive email notifications after successful or failed backups
+                            </p>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <p class="ml-3 text-gray-700">Keep a full history of backups</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                            alt="Cloud Backup" class="rounded-lg w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">AzuriteHub is open-source and free to use. Enterprise
+                    support plans available.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Community Plan -->
+                <div class="bg-gray-50 rounded-xl p-8 border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Community</h3>
+                    <p class="text-gray-600 mb-6">For individuals and small teams</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$0</span>
+                        <span class="text-gray-600">/forever</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>All core features</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Community support</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Self-hosted</span>
+                        </li>
+                    </ul>
+                    <a href="https://github.com/azuritehub" target="_blank"
+                        class="w-full block text-center px-4 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition duration-200">
+                        Download on GitHub
+                    </a>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="bg-white rounded-xl p-8 border-2 border-blue-500 shadow-lg relative">
+                    <div
+                        class="absolute top-0 right-0 bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                        POPULAR</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Professional</h3>
+                    <p class="text-gray-600 mb-6">For growing businesses</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$29</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>All Community features</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Priority support</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Advanced monitoring</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Team collaboration</span>
+                        </li>
+                    </ul>
+                    <a href="#get-started"
+                        class="w-full block text-center px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition duration-200">
+                        Start 14-day trial
+                    </a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="bg-gray-50 rounded-xl p-8 border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Enterprise</h3>
+                    <p class="text-gray-600 mb-6">For large organizations</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">Custom</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>All Professional features</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Dedicated support</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Custom integrations</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>SLA guarantees</span>
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="w-full block text-center px-4 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition duration-200">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="get-started" class="py-20 gradient-bg text-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-3xl font-bold mb-6">Ready to secure your data?</h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">Join thousands of developers and businesses who
+                trust AzuriteHub for their backup needs.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="https://github.com/steve-bang/AzuriteHub" target="_blank"
+                    class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition duration-200 flex items-center justify-center">
+                    <i class="fab fa-github mr-2"></i> Star on GitHub
+                </a>
+                <a href="#contact"
+                    class="px-6 py-3 bg-white/10 text-white font-semibold rounded-lg hover:bg-white/20 transition duration-200 flex items-center justify-center">
+                    Contact Us <i class="fas fa-arrow-right ml-2 animated-arrow"></i>
+                </a>
+            </div>
+        </div>
+        <div class="absolute inset-0 opacity-10">
+            <div
+                class="absolute inset-0 bg-[url('https://gist.githubusercontent.com/rafaelalmeidatk/1e0d4e5b6a1f3d9a8d8a3e3e3e3e3e3e/raw/5e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e/pattern.svg')]">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img class="logo mr-3" src="/assets/images/logo.png" height="32" />
+                        <span class="text-xl font-bold text-white">AzuriteHub</span>
+                    </div>
+                    <p class="text-sm">The open-source multi-cloud backup platform for modern businesses.</p>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Product</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="hover:text-white transition duration-200">Features</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition duration-200">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-200">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-200">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition duration-200">About</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-200">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-200">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-200">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Connect</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#"
+                            class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <p class="text-sm">Subscribe to our newsletter</p>
+                    <div class="mt-2 flex">
+                        <input type="email" placeholder="Your email"
+                            class="px-3 py-2 bg-gray-800 text-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full">
+                        <button
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-r-lg transition duration-200">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-500">© 2025 AzuriteHub. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-sm text-gray-500 hover:text-white transition duration-200">Privacy
+                        Policy</a>
+                    <a href="#" class="text-sm text-gray-500 hover:text-white transition duration-200">Terms of
+                        Service</a>
+                    <a href="#" class="text-sm text-gray-500 hover:text-white transition duration-200">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>
