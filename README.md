@@ -5,7 +5,7 @@
 It supports **multi-database engines** (SQL Server, MySQL, PostgreSQL) and **multi-cloud storage** (Google Drive, AWS S3, Azure Blob, Dropbox) with **automatic scheduling, compression, and notifications**.  
 Perfect for developers, sysadmins, and small teams who want **reliable, extensible, and easy-to-use backups**.
 
-![AzuriteHub Banner](https://via.placeholder.com/1200x300.png?text=AzuriteHub+-+Open-source+Multi-Cloud+Backup)
+![AzuriteHub Banner](assets/images/banner.png)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/AzuriteHub/AzuriteHub.svg?style=social)](https://github.com/AzuriteHub/AzuriteHub/stargazers)
