@@ -73,6 +73,9 @@ dotnet run --project BackupDb.Cli
 
 ## Documentation
 
+### Scheduled Jobs
+This project includes a scheduled job `DatabaseBackupPipelineJob` that runs every Sunday at midnight. For details and instructions on how to modify the schedule, see [docs/scheduled-jobs.md](docs/scheduled-jobs.md).
+
 ## Contributing
 
 We welcome contributions from the community!
